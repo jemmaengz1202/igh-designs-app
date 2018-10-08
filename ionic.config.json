@@ -1,0 +1,7 @@
+{
+  "name": "igh-designs-app",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
