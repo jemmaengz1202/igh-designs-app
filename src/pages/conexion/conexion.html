@@ -6,13 +6,31 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>conexion</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Conexión</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+    <h2>Dispositivos bluetooth:</h2>
+    <ion-item-group>
+        <ion-item-sliding *ngFor="let device of devices">
+            <button (click)="revisarConexion(device)" ion-item>
+        <h3>Nombre: {{device.name}}</h3>
+        <p>Id: {{device.id}}</p>
+        <p>Dirección <span [hidden]="device.address == undefined">mac</span><span [hidden]="device.uuid == undefined">uuid</span>: {{device.address}}{{device.uuid}}</p>
+        <p><span [hidden]="device.class == undefined">Clase</span><span [hidden]="device.rssi == undefined">Rssi</span>: {{device.class}}{{device.rssi}}</p>
+      </button>
+        </ion-item-sliding>
+    </ion-item-group>
+    <ion-segment>
+        <button ion-button (click)="desconectar()" block>Desconectar</button>
+    </ion-segment>
+
+    <div [hidden]="devices.length > 0" text-center>
+        <p>No se han encontrado dispositivos, activa el bluetooth y desliza hacia abajo para volver a buscar</p>
+    </div>
 
 </ion-content>

@@ -6,10 +6,42 @@
 
 <ion-content padding>
     <h2>Controles de la casa</h2>
-    <p>
-        This starter project comes with simple tabs-based layout for apps that are going to primarily use a Tabbed UI.
-    </p>
-    <p>
-        Take a look at the <code>src/pages/</code> directory to add or change tabs, update any existing page or create new pages.
-    </p>
+    <ion-card>
+        <ion-card-header>
+            Luces
+        </ion-card-header>
+
+        <ion-list>
+            <ion-item>
+                <button ion-item (click)="enviarDatoBluetooth('1\n')">
+                    <ion-icon name="bulb" item-start></ion-icon>
+                        Luz de la sala
+                </button>
+            </ion-item>
+            <ion-item>
+                <button ion-item (click)="enviarDatoBluetooth('2\n')">
+                    <ion-icon name="bulb" item-start></ion-icon>
+                        Luz de la cocina
+                </button>
+            </ion-item>
+            <ion-item>
+                <button ion-item (click)="enviarDatoBluetooth('3\n')">
+                    <ion-icon name="bulb" item-start></ion-icon>
+                        Luz del baño
+                </button>
+            </ion-item>
+            <ion-item>
+                <button ion-item (click)="enviarDatoBluetooth('4\n')">
+                    <ion-icon name="bulb" item-start></ion-icon>
+                        Luz de la habitación 1
+                </button>
+            </ion-item>
+            <ion-item>
+                <button ion-item (click)="enviarDatoBluetooth('5\n')">
+                    <ion-icon name="bulb" item-start></ion-icon>
+                        Luz de la habitación 2
+                </button>
+            </ion-item>
+        </ion-list>
+    </ion-card>
 </ion-content>

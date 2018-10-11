@@ -1,3 +1,4 @@
+import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -8,9 +9,11 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AlertasPage } from '../pages/alertas/alertas';
+import { ConexionPage } from '../pages/conexion/conexion';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { BluetoothArduinoProvider } from '../providers/bluetooth-arduino/bluetooth-arduino';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ContactPage,
     HomePage,
     TabsPage,
-    AlertasPage
+    AlertasPage,
+    ConexionPage
   ],
   imports: [
     BrowserModule,
@@ -32,12 +36,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ContactPage,
     HomePage,
     TabsPage,
-    AlertasPage
+    AlertasPage,
+    ConexionPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    BluetoothSerial,
+    BluetoothArduinoProvider
   ]
 })
 export class AppModule {}
