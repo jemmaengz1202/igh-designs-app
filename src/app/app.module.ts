@@ -15,6 +15,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { BluetoothArduinoProvider } from '../providers/bluetooth-arduino/bluetooth-arduino';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { FIREBASE_CONFIG } from './firebase.credentials';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -27,7 +31,9 @@ import { BluetoothArduinoProvider } from '../providers/bluetooth-arduino/bluetoo
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireDatabaseModule
   ],
   bootstrap      : [IonicApp],
   entryComponents: [
