@@ -1,3 +1,4 @@
+import { LecturasPage } from './../lecturas/lecturas';
 import { ConexionPage } from './../conexion/conexion';
 import { AlertasPage } from './../alertas/alertas';
 import { Component } from '@angular/core';
@@ -11,6 +12,7 @@ export class TabsPage {
   tab1Root = HomePage;
   tab2Root = AlertasPage;
   tab3Root = ConexionPage;
+  tab4Root = LecturasPage;
 
   constructor() {
 
