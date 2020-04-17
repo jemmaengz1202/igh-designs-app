@@ -1,3 +1,4 @@
+import { LecturasPage } from './../pages/lecturas/lecturas';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,6 +20,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { FIREBASE_CONFIG } from './firebase.credentials';
 
+import { FCM } from '@ionic-native/fcm';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -27,7 +30,8 @@ import { FIREBASE_CONFIG } from './firebase.credentials';
     HomePage,
     TabsPage,
     AlertasPage,
-    ConexionPage
+    ConexionPage,
+    LecturasPage
   ],
   imports: [
     BrowserModule,
@@ -43,14 +47,16 @@ import { FIREBASE_CONFIG } from './firebase.credentials';
     HomePage,
     TabsPage,
     AlertasPage,
-    ConexionPage
+    ConexionPage,
+    LecturasPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BluetoothSerial,
-    BluetoothArduinoProvider
+    BluetoothArduinoProvider,
+    FCM
   ]
 })
 export class AppModule {}
