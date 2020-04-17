@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { AngularFireDatabase } from "angularfire2/database";
 
 /**
  * Generated class for the AlertasPage page.
@@ -11,22 +11,21 @@ import { AngularFireDatabase } from 'angularfire2/database';
 
 @IonicPage()
 @Component({
-  selector   : 'page-alertas',
-  templateUrl: 'alertas.html',
+  selector: "page-alertas",
+  templateUrl: "alertas.html",
 })
 export class AlertasPage {
   alertasList: any;
 
   constructor(
-    public navCtrl  : NavController,
+    public navCtrl: NavController,
     public navParams: NavParams,
-    public db       : AngularFireDatabase
+    public db: AngularFireDatabase
   ) {
-    this.alertasList = this.db.list('lista').valueChanges();
+    this.alertasList = this.db.list("lista").valueChanges();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AlertasPage');
+    console.log("ionViewDidLoad AlertasPage");
   }
-
 }

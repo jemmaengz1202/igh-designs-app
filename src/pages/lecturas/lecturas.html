@@ -5,27 +5,30 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-    <ion-navbar>
-        <ion-title>Lecturas de datos</ion-title>
-    </ion-navbar>
-
+  <ion-navbar>
+    <ion-title>Lecturas de datos</ion-title>
+  </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-    <ion-card padding margin>
-        <ion-icon name="thermometer" item-start></ion-icon>
-        <h2><b>Temperatura: </b>{{ temperatura | async | slice:0:-1}}° </h2>
-    </ion-card>
+  <ion-card padding margin>
+    <ion-icon name="thermometer" item-start></ion-icon>
+    <h2><b>Temperatura: </b>{{ temperatura | async | slice:0:-1}}°</h2>
+  </ion-card>
 
-    <ion-card padding margin>
-        <ion-icon name="water" item-start></ion-icon>
-        <h2><b>Nivel de agua de la Cisterna 1: </b>{{ agua1 | async | slice:0:-1}} <i>l</i> </h2>
-    </ion-card>
+  <ion-card padding margin>
+    <ion-icon name="water" item-start></ion-icon>
+    <h2>
+      <b>Nivel de agua de la Cisterna 1: </b>{{ agua1 | async | slice:0:-1}}
+      <i>l</i>
+    </h2>
+  </ion-card>
 
-    <ion-card padding margin>
-        <ion-icon name="water" item-start></ion-icon>
-        <h2><b>Nivel de agua de la Cisterna 2: </b>{{ agua2 | async | slice:0:-1}} <i>l</i> </h2>
-    </ion-card>
+  <ion-card padding margin>
+    <ion-icon name="water" item-start></ion-icon>
+    <h2>
+      <b>Nivel de agua de la Cisterna 2: </b>{{ agua2 | async | slice:0:-1}}
+      <i>l</i>
+    </h2>
+  </ion-card>
 </ion-content>

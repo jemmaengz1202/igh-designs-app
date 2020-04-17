@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { ISubscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-import { fromPromise } from 'rxjs/observable/fromPromise';
-import { ToastController, AlertController } from 'ionic-angular';
-import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
-import 'rxjs/add/operator/mergeMap';
+import { Injectable } from "@angular/core";
+import { ISubscription } from "rxjs/Subscription";
+import { Observable } from "rxjs/Observable";
+import { fromPromise } from "rxjs/observable/fromPromise";
+import { ToastController, AlertController } from "ionic-angular";
+import { BluetoothSerial } from "@ionic-native/bluetooth-serial";
+import "rxjs/add/operator/mergeMap";
 
 /*
   Generated class for the BluetoothArduinoProvider provider.
@@ -14,34 +14,36 @@ import 'rxjs/add/operator/mergeMap';
 */
 @Injectable()
 export class BluetoothArduinoProvider {
-
-  devices         : Array<any> = [];
-  mensaje         : string = "";      //ngModel con un input
-  conexion        : ISubscription
+  devices: Array<any> = [];
+  mensaje: string = ""; //ngModel con un input
+  conexion: ISubscription;
   conexionMensajes: ISubscription;
-  reader          : Observable<any>;
+  reader: Observable<any>;
   rawListener;
 
   constructor(
-    private toastCtrl      : ToastController,
-    private alertCtrl      : AlertController,
-    public  bluetoothSerial: BluetoothSerial
-  ) { }
+    private toastCtrl: ToastController,
+    private alertCtrl: AlertController,
+    public bluetoothSerial: BluetoothSerial
+  ) {}
   /**
    * Al entrar en la ventana ejecuta la función para buscar dispositivos bluetooth.
    */
   buscar(): Promise<any> {
     const that: any = this;
     return new Promise((resolve, reject) =>
-      that.buscarBluetooth().then((success: Array<Object>) => {
-        that.devices = success;
-        // this.mostrarSpiner = false;
-        resolve(that.devices)
-      }, fail => {
-        reject(fail);
-        // this.mostrarSpiner = false;
-      }
-    ));
+      that.buscarBluetooth().then(
+        (success: Array<Object>) => {
+          that.devices = success;
+          // this.mostrarSpiner = false;
+          resolve(that.devices);
+        },
+        (fail) => {
+          reject(fail);
+          // this.mostrarSpiner = false;
+        }
+      )
+    );
   }
   /**
    * Al cerrar la aplicación se asegura de que se cierre la conexión bluetooth.
@@ -56,21 +58,27 @@ export class BluetoothArduinoProvider {
    */
   buscarBluetooth(): Promise<Object> {
     return new Promise((resolve, reject) => {
-      this.bluetoothSerial.isEnabled().then(success =>{
-        this.bluetoothSerial.discoverUnpaired().then(success => {
-          if (success.length > 0) {
-            resolve(success);
-          } else {
-            reject('No se encontraron dispositivos');
-          }
-        }).catch((error) => {
-          console.log(`[1] Error: ${JSON.stringify(error)}`);
-          reject('Bluetooth no disponible en esta plataforma');
-        });
-      }, fail => {
-        console.log(`[2] Error: ${JSON.stringify(fail)}`);
-        reject('El bluetooth no está disponible o está apagado');
-      });
+      this.bluetoothSerial.isEnabled().then(
+        (success) => {
+          this.bluetoothSerial
+            .discoverUnpaired()
+            .then((success) => {
+              if (success.length > 0) {
+                resolve(success);
+              } else {
+                reject("No se encontraron dispositivos");
+              }
+            })
+            .catch((error) => {
+              console.log(`[1] Error: ${JSON.stringify(error)}`);
+              reject("Bluetooth no disponible en esta plataforma");
+            });
+        },
+        (fail) => {
+          console.log(`[2] Error: ${JSON.stringify(fail)}`);
+          reject("El bluetooth no está disponible o está apagado");
+        }
+      );
     });
   }
   /**
@@ -96,58 +104,66 @@ export class BluetoothArduinoProvider {
    */
   revisarConexion(seleccion) {
     this.bluetoothSerial.isConnected().then(
-      isConnected => {
+      (isConnected) => {
         const alert = this.alertCtrl.create({
-          title  : 'Reconectar',
-          message: '¿Desea reconectar a este dispositivo?',
+          title: "Reconectar",
+          message: "¿Desea reconectar a este dispositivo?",
           buttons: [
             {
-              text   : 'Cancelar',
-              role   : 'cancel',
+              text: "Cancelar",
+              role: "cancel",
               handler: () => {
-                console.log('Cancel clicked');
-              }
+                console.log("Cancel clicked");
+              },
             },
             {
-              text   : 'Aceptar',
+              text: "Aceptar",
               handler: () => {
                 this.desconectar();
-                this.conectar(seleccion.id).then(success => {
-                  this.presentToast(success);
-                }, fail => {
-                  this.presentToast(fail);
-                });
-              }
-            }
-          ]
+                this.conectar(seleccion.id).then(
+                  (success) => {
+                    this.presentToast(success);
+                  },
+                  (fail) => {
+                    this.presentToast(fail);
+                  }
+                );
+              },
+            },
+          ],
         });
         alert.present();
-      }, notConnected => {
+      },
+      (notConnected) => {
         const alert = this.alertCtrl.create({
-          title  : 'Conectar',
-          message: '¿Desea conectar el dispositivo?',
+          title: "Conectar",
+          message: "¿Desea conectar el dispositivo?",
           buttons: [
             {
-              text   : 'Cancelar',
-              role   : 'cancel',
+              text: "Cancelar",
+              role: "cancel",
               handler: () => {
-                console.log('Cancel clicked');
-              }
+                console.log("Cancel clicked");
+              },
             },
             {
-              text   : 'Aceptar',
+              text: "Aceptar",
               handler: () => {
-                this.conectar(seleccion.id).then(success => {
-                  this.presentToast(success);
-                }, fail => {
-                  this.presentToast(fail);
-                });
-              }
-            }
-          ]
+                this.conectar(seleccion.id).then(
+                  (success) => {
+                    this.presentToast(success);
+                  },
+                  (fail) => {
+                    this.presentToast(fail);
+                  }
+                );
+              },
+            },
+          ],
         });
         alert.present();
-    });
+      }
+    );
   }
   /**
    * Se conceta a un dispostitivo bluetooth por su id.
@@ -156,13 +172,16 @@ export class BluetoothArduinoProvider {
    */
   conectar(id: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.conexion = this.bluetoothSerial.connect(id).subscribe((data: Observable<any>) => {
-        // this.enviarMensajes();
-        resolve("Conectado");
-      }, fail => {
-        console.log(`[3] Error conexión: ${JSON.stringify(fail)}`);
-        reject("No se logro conectar");
-      });
+      this.conexion = this.bluetoothSerial.connect(id).subscribe(
+        (data: Observable<any>) => {
+          // this.enviarMensajes();
+          resolve("Conectado");
+        },
+        (fail) => {
+          console.log(`[3] Error conexión: ${JSON.stringify(fail)}`);
+          reject("No se logro conectar");
+        }
+      );
     });
   }
   /**
@@ -175,13 +194,13 @@ export class BluetoothArduinoProvider {
     if (this.conexion) {
       this.conexion.unsubscribe();
     }
-    this.presentToast('Desconectado');
+    this.presentToast("Desconectado");
   }
   /**
    * Permite enviar mensajes de texto vía serial al conectarse por bluetooth.
    */
   enviarMensajes(_mensaje: string) {
-    this.conexionMensajes = this.dataInOut(_mensaje).subscribe(data => {
+    this.conexionMensajes = this.dataInOut(_mensaje).subscribe((data) => {
       const entrada = data.substr(0, data.length - 1);
       if (entrada != ">") {
         if (entrada != "") {
@@ -199,26 +218,29 @@ export class BluetoothArduinoProvider {
    * bluetooth.
    * @param message Es el texto que se desea enviar.
    * @returns {Observable<any>} Regresa el texto que llegue vía serial a través de la conexión
-   * bluetooth al dispositivo, en caso de no existir una conexión regresa un mensaje indicando que: 
+   * bluetooth al dispositivo, en caso de no existir una conexión regresa un mensaje indicando que:
    * _No estas conectado a ningún dispositivo bluetooth_.
    */
   public dataInOut(message: string): Observable<any> {
-    return Observable.create(observer => {
-      this.bluetoothSerial.isConnected().then(isConnected => {
-        this.reader = fromPromise(this.bluetoothSerial.write(message))
-          .flatMap(() => {
-            return this.bluetoothSerial.subscribeRawData()
-          })
-          .flatMap(() => {
-            return this.bluetoothSerial.readUntil('\n');   // <= delimitador
+    return Observable.create((observer) => {
+      this.bluetoothSerial.isConnected().then(
+        (isConnected) => {
+          this.reader = fromPromise(this.bluetoothSerial.write(message))
+            .flatMap(() => {
+              return this.bluetoothSerial.subscribeRawData();
+            })
+            .flatMap(() => {
+              return this.bluetoothSerial.readUntil("\n"); // <= delimitador
+            });
+          this.reader.subscribe((data) => {
+            observer.next(data);
           });
-        this.reader.subscribe(data => {
-          observer.next(data);
-        });
-      }, notConected => {
-        observer.next("Estas desconectado");
-        observer.complete();
-      });
+        },
+        (notConected) => {
+          observer.next("Estas desconectado");
+          observer.complete();
+        }
+      );
     });
   }
   /**
@@ -227,10 +249,9 @@ export class BluetoothArduinoProvider {
    */
   public presentToast(text: string) {
     let toast = this.toastCtrl.create({
-      message : text,
-      duration: 3000
+      message: text,
+      duration: 3000,
     });
     toast.present();
   }
 }
-

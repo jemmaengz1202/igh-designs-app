@@ -1,26 +1,26 @@
-import { LecturasPage } from './../pages/lecturas/lecturas';
-import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
-import { NgModule, ErrorHandler } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
+import { LecturasPage } from "./../pages/lecturas/lecturas";
+import { BluetoothSerial } from "@ionic-native/bluetooth-serial";
+import { NgModule, ErrorHandler } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { IonicApp, IonicModule, IonicErrorHandler } from "ionic-angular";
+import { MyApp } from "./app.component";
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
-import { AlertasPage } from '../pages/alertas/alertas';
-import { ConexionPage } from '../pages/conexion/conexion';
+import { AboutPage } from "../pages/about/about";
+import { ContactPage } from "../pages/contact/contact";
+import { HomePage } from "../pages/home/home";
+import { TabsPage } from "../pages/tabs/tabs";
+import { AlertasPage } from "../pages/alertas/alertas";
+import { ConexionPage } from "../pages/conexion/conexion";
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { BluetoothArduinoProvider } from '../providers/bluetooth-arduino/bluetooth-arduino';
+import { StatusBar } from "@ionic-native/status-bar";
+import { SplashScreen } from "@ionic-native/splash-screen";
+import { BluetoothArduinoProvider } from "../providers/bluetooth-arduino/bluetooth-arduino";
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { FIREBASE_CONFIG } from './firebase.credentials';
+import { AngularFireModule } from "angularfire2";
+import { AngularFireDatabaseModule } from "angularfire2/database";
+import { FIREBASE_CONFIG } from "./firebase.credentials";
 
-import { FCM } from '@ionic-native/fcm';
+import { FCM } from "@ionic-native/fcm";
 
 @NgModule({
   declarations: [
@@ -31,15 +31,15 @@ import { FCM } from '@ionic-native/fcm';
     TabsPage,
     AlertasPage,
     ConexionPage,
-    LecturasPage
+    LecturasPage,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
   ],
-  bootstrap      : [IonicApp],
+  bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     AboutPage,
@@ -48,15 +48,15 @@ import { FCM } from '@ionic-native/fcm';
     TabsPage,
     AlertasPage,
     ConexionPage,
-    LecturasPage
+    LecturasPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     BluetoothSerial,
     BluetoothArduinoProvider,
-    FCM
-  ]
+    FCM,
+  ],
 })
 export class AppModule {}

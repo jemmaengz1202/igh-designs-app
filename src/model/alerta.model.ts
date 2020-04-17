@@ -1,4 +1,4 @@
 export interface Alerta {
-    date: string,
-    text: string
+  date: string;
+  text: string;
 }

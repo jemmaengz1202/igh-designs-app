@@ -1,6 +1,6 @@
-import { AngularFireDatabase } from 'angularfire2/database';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AngularFireDatabase } from "angularfire2/database";
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
 
 /**
  * Generated class for the LecturasPage page.
@@ -11,25 +11,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector   : 'page-lecturas',
-  templateUrl: 'lecturas.html',
+  selector: "page-lecturas",
+  templateUrl: "lecturas.html",
 })
 export class LecturasPage {
   temperatura: any;
-  agua1      : any;
-  agua2      : any;
+  agua1: any;
+  agua2: any;
 
   constructor(
-    public navCtrl  : NavController,
+    public navCtrl: NavController,
     public navParams: NavParams,
-    public db       : AngularFireDatabase) {
-      this.temperatura = db.object('temperatura').valueChanges();
-      this.agua1       = db.object('agua1').valueChanges();
-      this.agua2       = db.object('agua2').valueChanges();
+    public db: AngularFireDatabase
+  ) {
+    this.temperatura = db.object("temperatura").valueChanges();
+    this.agua1 = db.object("agua1").valueChanges();
+    this.agua2 = db.object("agua2").valueChanges();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LecturasPage');
+    console.log("ionViewDidLoad LecturasPage");
   }
-
 }

@@ -1,6 +1,6 @@
-import { BluetoothArduinoProvider } from './../../providers/bluetooth-arduino/bluetooth-arduino';
-import { Component } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { BluetoothArduinoProvider } from "./../../providers/bluetooth-arduino/bluetooth-arduino";
+import { Component } from "@angular/core";
+import { NavController, NavParams, Platform } from "ionic-angular";
 
 /**
  * Generated class for the ConexionPage page.
@@ -10,34 +10,34 @@ import { NavController, NavParams, Platform } from 'ionic-angular';
  */
 
 @Component({
-  selector   : 'page-conexion',
-  templateUrl: 'conexion.html',
+  selector: "page-conexion",
+  templateUrl: "conexion.html",
 })
 export class ConexionPage {
-  devices : Array<any> = [];
+  devices: Array<any> = [];
 
   constructor(
-    private platform                : Platform,
-    public  navCtrl                 : NavController,
-    public  navParams               : NavParams,
-    public  bluetoothArduinoProvider: BluetoothArduinoProvider
-  ) { }
+    private platform: Platform,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public bluetoothArduinoProvider: BluetoothArduinoProvider
+  ) {}
 
   ionViewDidEnter() {
     this.platform.ready().then(() => {
       this.bluetoothArduinoProvider.buscar().then(
-        dispositivos => {
+        (dispositivos) => {
           this.devices = dispositivos;
         },
-        error => {
+        (error) => {
           this.bluetoothArduinoProvider.presentToast(error);
         }
-      )
+      );
     });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ConexionPage');
+    console.log("ionViewDidLoad ConexionPage");
   }
 
   revisarConexion(dispositivo: any) {
@@ -47,5 +47,4 @@ export class ConexionPage {
   desconectar() {
     this.bluetoothArduinoProvider.desconectar();
   }
-
 }
