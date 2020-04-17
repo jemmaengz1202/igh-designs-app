@@ -1,9 +1,9 @@
 {
   "name": "igh-designs-app",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
+  "version": "1.0.0",
+  "author": "Juan Emmanuel Enríquez",
   "homepage": "http://ionicframework.com/",
-  "private": true,
+  "private": false,
   "scripts": {
     "start": "ionic-app-scripts serve",
     "clean": "ionic-app-scripts clean",
