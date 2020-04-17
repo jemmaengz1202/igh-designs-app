@@ -5,7 +5,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 /**
  * Generated class for the AlertasPage page.
  *
- * See https: //ionicframework.com/docs/components/#navigation for more info on
+ * See https:   //ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
 
@@ -15,13 +15,14 @@ import { AngularFireDatabase } from 'angularfire2/database';
   templateUrl: 'alertas.html',
 })
 export class AlertasPage {
+  alertasList: any;
 
   constructor(
     public navCtrl  : NavController,
     public navParams: NavParams,
     public db       : AngularFireDatabase
   ) {
-    this.db.list('app').push('Funcionando');
+    this.alertasList = this.db.list('lista').valueChanges();
   }
 
   ionViewDidLoad() {

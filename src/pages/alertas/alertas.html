@@ -6,13 +6,23 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>alertas</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Alertas</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+    <ion-card>
+        <ion-card-header>
+            Lista de Alertas detectadas
+        </ion-card-header>
+    </ion-card>
+    <ion-list *ngFor="let alerta of alertasList | async">
+        <ion-item>
+            <h2>Fecha: {{ alerta.date | date: 'medium' }}</h2>
+            <h3>{{ alerta.text }}</h3>
+        </ion-item>
+    </ion-list>
 </ion-content>
